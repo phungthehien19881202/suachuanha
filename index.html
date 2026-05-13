@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Construct Pro - Giải Pháp Xây Dựng & Cải Tạo Chuyên Nghiệp</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+
+        /* Slider Animations */
+        .slide {
+            transition: opacity 1s ease-in-out, transform 1.2s ease-in-out;
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            z-index: 0;
+            transform: scale(1.05);
+        }
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+            transform: scale(1);
+        }
+
+        /* Before/After Overlay */
+        .ba-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            cursor: ew-resize;
+        }
+        .ba-after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            width: 50%; /* Initial split */
+            border-right: 3px solid #ff6b00;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ff6b00; border-radius: 10px; }
+
+        .project-card:hover .project-overlay { opacity: 1; }
+    </style>
+</head>
+<body class="bg-white text-[#261812]">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-[100] bg-white border-b border-gray-100 shadow-sm">
+      <div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+        <a class="text-xl font-black text-[#ff6b00] tracking-tighter flex items-center gap-2" href="#">
+            CONSTRUCT PRO
+        </a>
+        <nav class="hidden md:flex items-center space-x-10">
+          <a class="text-sm font-semibold text-[#ff6b00]" href="#home">Trang chủ</a>
+          <a class="text-sm font-semibold text-gray-600 hover:text-[#ff6b00] transition-colors" href="#services">Dịch vụ</a>
+          <a class="text-sm font-semibold text-gray-600 hover:text-[#ff6b00] transition-colors" href="#projects">Dự án</a>
+          <a class="text-sm font-semibold text-gray-600 hover:text-[#ff6b00] transition-colors" href="#process">Quy trình</a>
+          <a class="text-sm font-semibold text-gray-600 hover:text-[#ff6b00] transition-colors" href="#news">Báo giá</a>
+        </nav>
+        <button class="bg-[#ff6b00] text-white text-xs font-bold px-5 py-2.5 rounded shadow-lg shadow-orange-100 hover:scale-105 transition-all">Liên hệ ngay</button>
+      </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <section id="home" class="relative h-[650px] overflow-hidden group mt-[68px]">
+      <div class="slides-container absolute inset-0">
+        <!-- Slide 1 -->
+        <div class="slide active">
+          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbVZTyrs-JJcg6b9pRM5gdyjs2TGhLwN6AYck1Y4JgjN6KQWBCpnTLSd5x23-JJCS27wnYmtya8b0Ys-u6S4rb7jQ5lE7VA5kX5_lfWH6Q7kN78cu0StiWW4Gbpzy99jLbEFHNy3JtPHqi1OIgIhfw-QSArNBpuxOHg_z-qi087YCSlijNgmaKF_M4YEYiPWjh4rmIVMkGa7UnH18gaylt7eDG0aWujHGVBewW0C-8Iqbjmo9BeG3y_Eve0Brd7IIBCZ6BgBKN1VI" alt="Banner 1" />
+          <div class="absolute inset-0 bg-black/40"></div>
+          <div class="absolute inset-0 flex items-center px-6">
+            <div class="max-w-7xl mx-auto w-full">
+              <span class="bg-[#ff6b00] text-white text-[10px] font-bold px-3 py-1 mb-4 inline-block uppercase tracking-widest">GIẢI PHÁP XÂY DỰNG TOÀN DIỆN</span>
+              <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight max-w-2xl">DỊCH VỤ SỬA CHỮA & CẢI TẠO NHÀ CHUYÊN NGHIỆP</h1>
+              <p class="text-white/90 text-lg mb-8 max-w-xl">Chúng tôi mang đến giải pháp tối ưu cho không gian sống của bạn với đội ngũ kiến trúc sư và thợ thi công dày dặn kinh nghiệm.</p>
+              <div class="flex gap-4">
+                <button class="bg-[#ff6b00] text-white font-bold px-6 py-3 rounded text-sm hover:bg-[#e66000] transition-all">Nhận báo giá ngay</button>
+                <button class="border border-white text-white font-bold px-6 py-3 rounded text-sm hover:bg-white/10 transition-all">Xem các dự án</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80" alt="Banner 2" />
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 flex items-center px-6">
+              <div class="max-w-7xl mx-auto w-full">
+                <span class="bg-[#ff6b00] text-white text-[10px] font-bold px-3 py-1 mb-4 inline-block uppercase tracking-widest">THIẾT KẾ NỘI THẤT ĐẲNG CẤP</span>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight max-w-2xl">NÂNG TẦM GIÁ TRỊ KHÔNG GIAN SỐNG</h1>
+                <p class="text-white/90 text-lg mb-8 max-w-xl">Kiến tạo không gian sang trọng, hiện đại và mang đậm dấu ấn cá nhân của gia chủ.</p>
+                <div class="flex gap-4">
+                  <button class="bg-[#ff6b00] text-white font-bold px-6 py-3 rounded text-sm hover:bg-[#e66000] transition-all">Tư vấn thiết kế</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="slide">
+            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80" alt="Banner 3" />
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="absolute inset-0 flex items-center px-6">
+              <div class="max-w-7xl mx-auto w-full">
+                <span class="bg-[#ff6b00] text-white text-[10px] font-bold px-3 py-1 mb-4 inline-block uppercase tracking-widest">THI CÔNG QUÁN CAFE & NHÀ HÀNG</span>
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight max-w-2xl">ĐỒNG HÀNH TRÊN CON ĐƯỜNG KINH DOANH</h1>
+                <p class="text-white/90 text-lg mb-8 max-w-xl">Giải pháp thi công F&B trọn gói, tối ưu không gian và đảm bảo tiến độ khai trương.</p>
+                <div class="flex gap-4">
+                  <button class="bg-[#ff6b00] text-white font-bold px-6 py-3 rounded text-sm hover:bg-[#e66000] transition-all">Xem mẫu quán đẹp</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="absolute inset-y-0 left-4 flex items-center z-20">
+        <button id="prevSlide" class="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all focus:outline-none opacity-0 group-hover:opacity-100">
+            <i data-lucide="chevron-left" size="20"></i>
+        </button>
+      </div>
+      <div class="absolute inset-y-0 right-4 flex items-center z-20">
+        <button id="nextSlide" class="w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center backdrop-blur-sm transition-all focus:outline-none opacity-0 group-hover:opacity-100">
+            <i data-lucide="chevron-right" size="20"></i>
+        </button>
+      </div>
+
+      <!-- Slide Indicators -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+        <button class="indicator w-8 h-1 bg-[#ff6b00] transition-all active" data-index="0"></button>
+        <button class="indicator w-8 h-1 bg-white/30 hover:bg-white/50 transition-all" data-index="1"></button>
+        <button class="indicator w-8 h-1 bg-white/30 hover:bg-white/50 transition-all" data-index="2"></button>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">Dịch vụ tiêu biểu</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto text-sm">Construct Pro cung cấp các gói giải pháp thi công và cải tạo chuyên nghiệp, đáp ứng mọi tiêu chuẩn khắt khe về thẩm mỹ và kỹ thuật.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-8 bg-white border border-gray-100 rounded shadow-sm hover:shadow-md transition-all">
+                <div class="w-12 h-12 bg-orange-50 text-[#ff6b00] flex items-center justify-center rounded mb-6">
+                    <i data-lucide="home" size="24"></i>
+                </div>
+                <h3 class="font-bold mb-3">Sửa chữa nhà phố</h3>
+                <p class="text-gray-500 text-xs leading-relaxed">Cải tạo kết cấu, thay đổi công năng sử dụng cho nhà phố hiện đại với chi phí tối ưu nhất.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded shadow-sm hover:shadow-md transition-all">
+                <div class="w-12 h-12 bg-orange-50 text-[#ff6b00] flex items-center justify-center rounded mb-6">
+                    <i data-lucide="building" size="24"></i>
+                </div>
+                <h3 class="font-bold mb-3">Cải tạo nhà ở</h3>
+                <p class="text-gray-500 text-xs leading-relaxed">Làm mới không gian sống, xử lý chống thấm và nâng cấp nội thất toàn diện cho tổ ấm của bạn.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded shadow-sm hover:shadow-md transition-all">
+                <div class="w-12 h-12 bg-orange-50 text-[#ff6b00] flex items-center justify-center rounded mb-6">
+                    <i data-lucide="utensils" size="24"></i>
+                </div>
+                <h3 class="font-bold mb-3">Thi công nhà hàng</h3>
+                <p class="text-gray-500 text-xs leading-relaxed">Thiết kế và thi công bếp công nghiệp, khu vực đón khách sang trọng và đạt chuẩn an toàn.</p>
+            </div>
+            <div class="p-8 bg-white border border-gray-100 rounded shadow-sm hover:shadow-md transition-all">
+                <div class="w-12 h-12 bg-orange-50 text-[#ff6b00] flex items-center justify-center rounded mb-6">
+                    <i data-lucide="coffee" size="24"></i>
+                </div>
+                <h3 class="font-bold mb-3">Thi công quán cafe</h3>
+                <p class="text-gray-500 text-xs leading-relaxed">Kiến tạo không gian độc bản, thu hút khách hàng với phong cách kiến trúc ấn tượng và hợp xu hướng.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Grid -->
+    <section id="projects" class="py-20 bg-gray-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Dự án tiêu biểu</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Biệt thự phố">
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="bg-black/70 text-white text-[9px] font-bold px-2 py-1">TRƯỚC</span>
+                            <span class="bg-[#ff6b00] text-white text-[9px] font-bold px-2 py-1">SAU</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold mb-4">Cải tạo biệt thự phố</h4>
+                        <div class="flex justify-between text-[10px] text-gray-400 font-bold uppercase">
+                            <div>VỊ TRÍ <p class="text-[#261812] mt-1">Quận 2, HCM</p></div>
+                            <div>QUY MÔ <p class="text-[#261812] mt-1">250m2</p></div>
+                            <div>THỜI GIAN <p class="text-[#261812] mt-1">45 ngày</p></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="The Coffee House">
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="bg-black/70 text-white text-[9px] font-bold px-2 py-1">TRƯỚC</span>
+                            <span class="bg-[#ff6b00] text-white text-[9px] font-bold px-2 py-1">SAU</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold mb-4">Chuỗi The Coffee House</h4>
+                        <div class="flex justify-between text-[10px] text-gray-400 font-bold uppercase">
+                            <div>VỊ TRÍ <p class="text-[#261812] mt-1">Quận 7, HCM</p></div>
+                            <div>QUY MÔ <p class="text-[#261812] mt-1">F&B Hub</p></div>
+                            <div>THỜI GIAN <p class="text-[#261812] mt-1">30 ngày</p></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="src/assets/images/regenerated_image_1778667968103.jpg" class="w-full h-full object-cover" alt="Landmark 81">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-[#ff6b00] text-white text-[9px] font-bold px-2 py-1 uppercase">DỰ ÁN MỚI</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold mb-4">Penthouse Landmark 81</h4>
+                        <div class="flex justify-between text-[10px] text-gray-400 font-bold uppercase">
+                            <div>VỊ TRÍ <p class="text-[#261812] mt-1">Bình Thạnh</p></div>
+                            <div>QUY MÔ <p class="text-[#261812] mt-1">180m2</p></div>
+                            <div>THỜI GIAN <p class="text-[#261812] mt-1">60 ngày</p></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="TechHub">
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="bg-black/70 text-white text-[9px] font-bold px-2 py-1">TRƯỚC</span>
+                            <span class="bg-[#ff6b00] text-white text-[9px] font-bold px-2 py-1">SAU</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold mb-4">Cải tạo văn phòng TechHub</h4>
+                        <div class="flex justify-between text-[10px] text-gray-400 font-bold uppercase">
+                            <div>VỊ TRÍ <p class="text-[#261812] mt-1">Quận 1, HCM</p></div>
+                            <div>QUY MÔ <p class="text-[#261812] mt-1">500m2</p></div>
+                            <div>THỜI GIAN <p class="text-[#261812] mt-1">55 ngày</p></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 5 -->
+                <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Sunny Villa">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-[#ff6b00] text-white text-[9px] font-bold px-2 py-1 uppercase">DỰ ÁN MỚI</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold mb-4">Biệt thự nhà vườn Sunny</h4>
+                        <div class="flex justify-between text-[10px] text-gray-400 font-bold uppercase">
+                            <div>VỊ TRÍ <p class="text-[#261812] mt-1">Long An</p></div>
+                            <div>QUY MÔ <p class="text-[#261812] mt-1">350m2</p></div>
+                            <div>THỜI GIAN <p class="text-[#261812] mt-1">90 ngày</p></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 6 -->
+                <div class="bg-white rounded overflow-hidden shadow-sm hover:shadow-md transition-all">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Masteri Apartment">
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="bg-black/70 text-white text-[9px] font-bold px-2 py-1">TRƯỚC</span>
+                            <span class="bg-[#ff6b00] text-white text-[9px] font-bold px-2 py-1">SAU</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold mb-4">Cải tạo căn hộ Masteri</h4>
+                        <div class="flex justify-between text-[10px] text-gray-400 font-bold uppercase">
+                            <div>VỊ TRÍ <p class="text-[#261812] mt-1">Quận 2, HCM</p></div>
+                            <div>QUY MÔ <p class="text-[#261812] mt-1">95m2</p></div>
+                            <div>THỜI GIAN <p class="text-[#261812] mt-1">25 ngày</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#" class="text-[#ff6b00] font-bold text-sm flex items-center justify-center gap-2">Xem tất cả dự án <i data-lucide="arrow-right" size="14"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Working Process -->
+    <section id="process" class="py-24 bg-[#f4e2d9]">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="text-center mb-16">
+              <h2 class="text-3xl font-bold mb-4">Quy trình làm việc chuyên nghiệp</h2>
+              <p class="text-gray-600 text-sm">Quy trình 6 bước khép kín đảm bảo tính minh bạch và chất lượng công trình tuyệt đối.</p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              <div class="text-center">
+                  <div class="w-16 h-16 bg-[#ff6b00] text-white rounded-xl flex items-center justify-center text-xl font-bold mx-auto mb-6">01</div>
+                  <h4 class="font-bold text-sm mb-2">Tiếp nhận</h4>
+                  <p class="text-[10px] text-gray-500 leading-relaxed px-2">Ghi nhận yêu cầu & tư vấn sơ bộ</p>
+              </div>
+              <div class="text-center">
+                  <div class="w-16 h-16 bg-white text-[#ff6b00] rounded-xl flex items-center justify-center text-xl font-bold mx-auto mb-6">02</div>
+                  <h4 class="font-bold text-sm mb-2">Khảo sát</h4>
+                  <p class="text-[10px] text-gray-500 leading-relaxed px-2">Đo đạc & đánh giá thực trạng</p>
+              </div>
+              <div class="text-center">
+                  <div class="w-16 h-16 bg-white text-[#ff6b00] rounded-xl flex items-center justify-center text-xl font-bold mx-auto mb-6">03</div>
+                  <h4 class="font-bold text-sm mb-2">Báo giá</h4>
+                  <p class="text-[10px] text-gray-500 leading-relaxed px-2">Lập dự toán chi tiết các hạng mục</p>
+              </div>
+              <div class="text-center">
+                  <div class="w-16 h-16 bg-white text-[#ff6b00] rounded-xl flex items-center justify-center text-xl font-bold mx-auto mb-6">04</div>
+                  <h4 class="font-bold text-sm mb-2">Ký hợp đồng</h4>
+                  <p class="text-[10px] text-gray-500 leading-relaxed px-2">Thống nhất phương án & pháp lý</p>
+              </div>
+              <div class="text-center">
+                  <div class="w-16 h-16 bg-white text-[#ff6b00] rounded-xl flex items-center justify-center text-xl font-bold mx-auto mb-6">05</div>
+                  <h4 class="font-bold text-sm mb-2">Thi công</h4>
+                  <p class="text-[10px] text-gray-500 leading-relaxed px-2">Thực hiện dự án theo tiến độ</p>
+              </div>
+              <div class="text-center">
+                  <div class="w-16 h-16 bg-white text-[#ff6b00] rounded-xl flex items-center justify-center text-xl font-bold mx-auto mb-6">06</div>
+                  <h4 class="font-bold text-sm mb-2">Bàn giao</h4>
+                  <p class="text-[10px] text-gray-500 leading-relaxed px-2">Nghiệm thu & bảo hành dài hạn</p>
+              </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-24 px-6 max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+      <div class="md:w-1/2">
+          <img class="w-full h-[450px] object-cover rounded shadow-2xl" src="src/assets/images/regenerated_image_1778667968887.jpg" alt="Professional construction" />
+      </div>
+      <div class="md:w-1/2">
+          <h2 class="text-3xl font-bold mb-8">Tại sao chọn Construct Pro?</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-orange-50 text-[#ff6b00] flex items-center justify-center rounded-full mt-1">
+                  <i data-lucide="check" size="18"></i>
+              </div>
+              <div>
+                  <h4 class="font-bold text-sm mb-1">Chất lượng cam kết</h4>
+                  <p class="text-[11px] text-gray-500 leading-relaxed">Sử dụng vật liệu loại 1, quy trình kiểm soát nghiêm ngặt.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-orange-50 text-[#ff6b00] flex items-center justify-center rounded-full mt-1">
+                  <i data-lucide="clock" size="18"></i>
+              </div>
+              <div>
+                  <h4 class="font-bold text-sm mb-1">Đúng tiến độ</h4>
+                  <p class="text-[11px] text-gray-500 leading-relaxed">Bàn giao công trình đúng hoặc sớm hơn thời hạn đã ký.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-orange-50 text-[#ff6b00] flex items-center justify-center rounded-full mt-1">
+                  <i data-lucide="dollar-sign" size="18"></i>
+              </div>
+              <div>
+                  <h4 class="font-bold text-sm mb-1">Giá cả minh bạch</h4>
+                  <p class="text-[11px] text-gray-500 leading-relaxed">Không phát sinh chi phí ngoài hợp đồng với bảng giá công khai.</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="flex-shrink-0 w-8 h-8 bg-orange-50 text-[#ff6b00] flex items-center justify-center rounded-full mt-1">
+                  <i data-lucide="users-2" size="18"></i>
+              </div>
+              <div>
+                  <h4 class="font-bold text-sm mb-1">Thi công</h4>
+                  <p class="text-[11px] text-gray-500 leading-relaxed">Đội ngũ kỹ sư tay nghề cao, hàng ngàn công trình hoàn tất.</p>
+              </div>
+            </div>
+          </div>
+          <button class="mt-10 bg-[#261812] text-white font-bold px-8 py-3 rounded text-sm hover:bg-[#ff6b00] transition-all">Tìm hiểu thêm về chúng tôi</button>
+      </div>
+    </section>
+
+    <!-- Before After Showcase -->
+    <section class="py-24 bg-[#1a110d] text-white px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-4 uppercase tracking-tighter">Chi tiết lột xác công trình</h2>
+                    <p class="text-gray-400 text-sm">Cận cảnh quy trình biến đổi không gian sống cùng chuyên gia.</p>
+                </div>
+                <a href="#" class="text-[#ff6b00] font-bold text-xs uppercase tracking-widest hover:underline">Xem thư viện ảnh</a>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Project 1 -->
+                <div>
+                    <div class="ba-container aspect-[16/10] mb-6 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Before">
+                        <div class="ba-after" id="ba-1">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=100" class="h-full object-cover" style="width: 200%;" alt="After">
+                        </div>
+                        <div class="absolute top-4 left-4 bg-black/70 text-white text-[9px] font-bold px-2 py-1">TRƯỚC</div>
+                        <div class="absolute top-4 right-4 bg-[#ff6b00] text-white text-[9px] font-bold px-2 py-1">SAU</div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Cải tạo biệt thự phố - Quận 2</h4>
+                        <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest">Tổng diện tích: 250m2 | Thời gian: 45 ngày</p>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div>
+                    <div class="ba-container aspect-[16/10] mb-6 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80" class="w-full h-full object-cover" alt="Before">
+                        <div class="ba-after" id="ba-2">
+                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=100" class="h-full object-cover" style="width: 200%;" alt="After">
+                        </div>
+                        <div class="absolute top-4 left-4 bg-black/70 text-white text-[9px] font-bold px-2 py-1">TRƯỚC</div>
+                        <div class="absolute top-4 right-4 bg-[#ff6b00] text-white text-[9px] font-bold px-2 py-1">SAU</div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Thi công The Coffee House - Quận 7</h4>
+                        <p class="text-gray-500 text-[10px] uppercase font-bold tracking-widest">Loại hình: F&B | Thời gian: 30 ngày</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16 uppercase italic underline decoration-[#ff6b00] underline-offset-8">Đánh giá từ khách hàng</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 border border-gray-100 rounded-2xl relative">
+                    <div class="flex text-orange-400 gap-1 mb-6">
+                        <i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i>
+                    </div>
+                    <p class="text-gray-600 text-[11px] leading-6 italic mb-10">"Đội ngũ thi công của Construct Pro làm việc rất chuyên nghiệp và tỉ mỉ. Ngôi biệt thự sau khi cải tạo vượt xa mong đợi của gia đình tôi về cả thẩm mỹ lẫn chất lượng kết cấu."</p>
+                    <div>
+                        <div class="font-bold text-sm">Anh Hoàng</div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-1">Cải tạo biệt thự</div>
+                    </div>
+                </div>
+                <div class="p-8 border border-gray-100 rounded-2xl relative">
+                    <div class="flex text-orange-400 gap-1 mb-6">
+                        <i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i>
+                    </div>
+                    <p class="text-gray-600 text-[11px] leading-6 italic mb-10">"Rất hài lòng với tiến độ thi công quán cafe. Mọi chi tiết trang trí đều được thực hiện đúng như bản vẽ thiết kế. Sự chuyên nghiệp của các bạn giúp tôi rất yên tâm khi kinh doanh."</p>
+                    <div>
+                        <div class="font-bold text-sm">Chị Lan</div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-1">Thi công quán cafe</div>
+                    </div>
+                </div>
+                <div class="p-8 border border-gray-100 rounded-2xl relative">
+                    <div class="flex text-orange-400 gap-1 mb-6">
+                        <i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i><i data-lucide="star" size="14" fill="currentColor"></i>
+                    </div>
+                    <p class="text-gray-600 text-[11px] leading-6 italic mb-10">"Quy trình làm việc minh bạch, không phát sinh chi phí ngoài dự toán. Thợ thi công lành nghề, dọn dẹp vệ sinh sạch sẽ sau mỗi ngày làm việc. Sẽ tiếp tục ủng hộ công ty."</p>
+                    <div>
+                        <div class="font-bold text-sm">Anh Tuấn</div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mt-1">Sửa chữa nhà phố</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News -->
+    <section id="news" class="py-24 bg-gray-50 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-16 uppercase italic underline decoration-[#ff6b00] underline-offset-8 whitespace-nowrap">Tin tức mới nhất</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                <!-- Post 1 -->
+                <div>
+                    <div class="relative overflow-hidden group mb-6 rounded">
+                        <img src="https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?auto=format&fit=crop&q=80" class="w-full h-52 object-cover transition-all group-hover:scale-110" alt="News 1">
+                        <span class="absolute top-0 left-0 bg-[#2b547e] text-white text-[8px] font-bold px-2 py-1 uppercase tracking-widest">XU HƯỚNG</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-3 line-clamp-2">Top 5 xu hướng thiết kế nội thất hiện đại năm 2024</h4>
+                    <p class="text-gray-500 text-[10px] leading-relaxed mb-4 line-clamp-3">Khám phá những phong cách thiết kế đang lên ngôi, từ tối giản hiện đại đến phong cách kiến trúc xanh bền vững...</p>
+                    <a href="#" class="text-[#ff6b00] font-bold text-[9px] uppercase tracking-widest flex items-center gap-1">Xem thêm <i data-lucide="arrow-right" size="12"></i></a>
+                </div>
+                <!-- Post 2 -->
+                <div>
+                    <div class="relative overflow-hidden group mb-6 rounded">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80" class="w-full h-52 object-cover transition-all group-hover:scale-110" alt="News 2">
+                        <span class="absolute top-0 left-0 bg-[#a0522d] text-white text-[8px] font-bold px-2 py-1 uppercase tracking-widest">KINH NGHIỆM</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-3 line-clamp-2">Lưu ý quan trọng khi cải tạo nhà cũ thành mới tiết kiệm chi phí</h4>
+                    <p class="text-gray-500 text-[10px] leading-relaxed mb-4 line-clamp-3">Những bí quyết giúp bạn tối ưu ngân sách mà vẫn đảm bảo gia đình có một căn hộ đẳng cấp từ an toàn kết cấu cho ngôi nhà...</p>
+                    <a href="#" class="text-[#ff6b00] font-bold text-[9px] uppercase tracking-widest flex items-center gap-1">Xem thêm <i data-lucide="arrow-right" size="12"></i></a>
+                </div>
+                <!-- Post 3 -->
+                <div>
+                    <div class="relative overflow-hidden group mb-6 rounded">
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80" class="w-full h-52 object-cover transition-all group-hover:scale-110" alt="News 3">
+                        <span class="absolute top-0 left-0 bg-[#2e8b57] text-white text-[8px] font-bold px-2 py-1 uppercase tracking-widest">VẬT LIỆU</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-3 line-clamp-2">Cách chọn vật liệu xây dựng chất lượng cho công trình nhà phố</h4>
+                    <p class="text-gray-500 text-[10px] leading-relaxed mb-4 line-clamp-3">Làm sao để phân biệt vật liệu chuẩn, sắt thép đạt chuẩn để công trình luôn bền đẹp với thời gian...</p>
+                    <a href="#" class="text-[#ff6b00] font-bold text-[9px] uppercase tracking-widest flex items-center gap-1">Xem thêm <i data-lucide="arrow-right" size="12"></i></a>
+                </div>
+                <!-- Post 4 -->
+                <div>
+                    <div class="relative overflow-hidden group mb-6 rounded">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" class="w-full h-52 object-cover transition-all group-hover:scale-110" alt="News 4">
+                        <span class="absolute top-0 left-0 bg-[#cd5c5c] text-white text-[8px] font-bold px-2 py-1 uppercase tracking-widest">CÔNG TRÌNH</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-3 line-clamp-2">Cận cảnh quá trình hoàn thiện căn hộ Penthouse Landmark 81</h4>
+                    <p class="text-gray-500 text-[10px] leading-relaxed mb-4 line-clamp-3">Hành trình lột xác không gian đẳng cấp từ khâu lên ý tưởng thiết kế khi bàn giao cho khách hàng...</p>
+                    <a href="#" class="text-[#ff6b00] font-bold text-[9px] uppercase tracking-widest flex items-center gap-1">Xem thêm <i data-lucide="arrow-right" size="12"></i></a>
+                </div>
+                <!-- Post 5 -->
+                <div>
+                    <div class="relative overflow-hidden group mb-6 rounded">
+                        <img src="src/assets/images/regenerated_image_1778667969638.jpg" class="w-full h-52 object-cover transition-all group-hover:scale-110" alt="News 5">
+                        <span class="absolute top-0 left-0 bg-[#ffd700] text-black text-[8px] font-bold px-2 py-1 uppercase tracking-widest">KIẾN THỨC</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-3 line-clamp-2">Phong thủy trong xây dựng và cải tạo nhà ở gia chủ cần biết</h4>
+                    <p class="text-gray-500 text-[10px] leading-relaxed mb-4 line-clamp-3">Tổng hợp những kiến thức cơ bản về hướng nhà, phòng bếp và phòng ngủ giúp rước lộc cho gia đình...</p>
+                    <a href="#" class="text-[#ff6b00] font-bold text-[9px] uppercase tracking-widest flex items-center gap-1">Xem thêm <i data-lucide="arrow-right" size="12"></i></a>
+                </div>
+                <!-- Post 6 -->
+                <div>
+                    <div class="relative overflow-hidden group mb-6 rounded">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80" class="w-full h-52 object-cover transition-all group-hover:scale-110" alt="News 6">
+                        <span class="absolute top-0 left-0 bg-[#a0522d] text-white text-[8px] font-bold px-2 py-1 uppercase tracking-widest">KINH NGHIỆM</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-3 line-clamp-2">Giải pháp thi công quán cafe diện tích nhỏ hiệu quả</h4>
+                    <p class="text-gray-500 text-[10px] leading-relaxed mb-4 line-clamp-3">Tối ưu không gian khách hàng cho quán cafe nhỏ mồi ngày, giúp mở rộng không gian rỗng rãi thu hút khách...</p>
+                    <a href="#" class="text-[#ff6b00] font-bold text-[9px] uppercase tracking-widest flex items-center gap-1">Xem thêm <i data-lucide="arrow-right" size="12"></i></a>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <button class="border border-gray-200 text-gray-600 font-bold px-8 py-3 rounded text-xs hover:bg-gray-100 transition-all uppercase tracking-widest">Xem tất cả tin tức</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section (Matching Screenshot) -->
+    <section class="py-24 px-6 bg-[#fcfaf9]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row overflow-hidden shadow-2xl rounded">
+            <!-- Left Info Panel -->
+            <div class="md:w-1/3 bg-[#ff6b00] p-12 text-white">
+                <h2 class="text-3xl font-bold mb-8 uppercase tracking-widest">Liên hệ tư vấn</h2>
+                <p class="text-sm mb-12 opacity-90 leading-relaxed">Hãy để lại thông tin, đội ngũ kỹ sư của chúng tôi sẽ gọi lại tư vấn giải pháp tối ưu nhất cho bạn trong vòng 30 phút.</p>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="phone-call" size="18"></i>
+                        <span class="font-bold text-sm whitespace-nowrap">Hotline: 1900 6789</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="mail" size="18"></i>
+                        <span class="text-sm">contact@constructpro.vn</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i data-lucide="map-pin" size="18"></i>
+                        <span class="text-sm">123 Đường số 7, TP. Thủ Đức, TP. HCM</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Form Panel -->
+            <div class="md:w-2/3 bg-white p-12">
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Họ và tên</label>
+                        <input type="text" placeholder="Nguyễn Văn A" class="w-full border-b border-gray-100 py-2 focus:border-[#ff6b00] outline-none text-sm transition-all" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Số điện thoại</label>
+                        <input type="tel" placeholder="090x xxx xxx" class="w-full border-b border-gray-100 py-2 focus:border-[#ff6b00] outline-none text-sm transition-all" />
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Dịch vụ quan tâm</label>
+                        <select class="w-full border-b border-gray-100 py-2 focus:border-[#ff6b00] outline-none text-sm transition-all bg-white">
+                            <option>Sửa chữa nhà phố</option>
+                            <option>Cải tạo nhà ở</option>
+                            <option>Thi công nhà hàng</option>
+                            <option>Thi công quán cafe</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2 space-y-2">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Lời nhắn (Tùy chọn)</label>
+                        <textarea rows="3" placeholder="Mô tả sơ bộ về nhu cầu của bạn..." class="w-full border-b border-gray-100 py-2 focus:border-[#ff6b00] outline-none text-sm transition-all resize-none"></textarea>
+                    </div>
+                    <div class="md:col-span-2 pt-4">
+                        <button type="submit" class="w-full bg-[#ff6b00] text-white font-bold py-4 rounded text-sm tracking-widest uppercase shadow-xl shadow-orange-100 hover:scale-[1.02] transition-all">Gửi yêu cầu ngay</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#1a110d] text-white py-20 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+            <div>
+                <h3 class="text-xl font-black text-[#ff6b00] mb-8">CONSTRUCT PRO</h3>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-xs">Giải pháp xây dựng chuyên nghiệp và chất lượng tốt hàng đầu cho mọi phân khu của người Việt.</p>
+                <div class="flex gap-4 mt-6">
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center hover:bg-[#ff6b00] transition-all"><i data-lucide="facebook" size="14"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-gray-800 flex items-center justify-center hover:bg-[#ff6b00] transition-all"><i data-lucide="youtube" size="14"></i></a>
+                </div>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">Dịch vụ</h5>
+                <ul class="text-xs text-gray-500 space-y-4 font-semibold">
+                    <li><a href="#" class="hover:text-white transition-all">Sửa chữa nhà phố</a></li>
+                    <li><a href="#" class="hover:text-white transition-all">Cải tạo nhà ở</a></li>
+                    <li><a href="#" class="hover:text-white transition-all">Thi công nhà hàng</a></li>
+                    <li><a href="#" class="hover:text-white transition-all">Thi công quán cafe</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">Công ty</h5>
+                <ul class="text-xs text-gray-500 space-y-4 font-semibold">
+                    <li><a href="#" class="hover:text-white transition-all">Về chúng tôi</a></li>
+                    <li><a href="#" class="hover:text-white transition-all">Tuyển dụng</a></li>
+                    <li><a href="#" class="hover:text-white transition-all">Hỗ trợ kỹ thuật</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        $(document).ready(function() {
+            lucide.createIcons();
+
+            // Slider Logic
+            let currentSlide = 0;
+            const slides = $('.slide');
+            const indicators = $('.indicator');
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                slides.removeClass('active');
+                indicators.removeClass('active').removeClass('bg-[#ff6b00]').addClass('bg-white/30');
+                
+                $(slides[index]).addClass('active');
+                $(indicators[index]).addClass('active').addClass('bg-[#ff6b00]').removeClass('bg-white/30');
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                let next = (currentSlide + 1) % totalSlides;
+                showSlide(next);
+            }
+
+            function prevSlide() {
+                let prev = (currentSlide - 1 + totalSlides) % totalSlides;
+                showSlide(prev);
+            }
+
+            // Auto-advance slides every 6 seconds
+            let slideInterval = setInterval(nextSlide, 6000);
+
+            // Manual controls
+            $('#nextSlide').click(function() {
+                clearInterval(slideInterval);
+                nextSlide();
+                slideInterval = setInterval(nextSlide, 6000);
+            });
+
+            $('#prevSlide').click(function() {
+                clearInterval(slideInterval);
+                prevSlide();
+                slideInterval = setInterval(nextSlide, 6000);
+            });
+
+            $('.indicator').click(function() {
+                const index = $(this).data('index');
+                clearInterval(slideInterval);
+                showSlide(index);
+                slideInterval = setInterval(nextSlide, 6000);
+            });
+
+            // Before/After Slider Logic
+            $('.ba-container').on('mousemove touchmove', function(e) {
+                const rect = this.getBoundingClientRect();
+                let pageX = e.pageX || (e.touches && e.touches[0].pageX);
+                let x = pageX - rect.left;
+                if (x < 0) x = 0; if (x > rect.width) x = rect.width;
+                let percentage = (x / rect.width) * 100;
+                $(this).find('.ba-after').css('width', percentage + '%');
+            });
+        });
+    </script>
+</body>
+</html>
